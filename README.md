@@ -30,7 +30,7 @@ docker ps
 *  Start the application
 
 ```
-mvn spring-boot:run -Dspring.cloud.vault.token={token}
+mvn spring-boot:run
 ```
 
 * Test the application
