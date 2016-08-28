@@ -27,13 +27,13 @@ docker run -d -p 2181:2181 -p 9092:9092 --env ADVERTISED_HOST=localhost --env AD
 docker ps
 ```
 
-*  Start the application
+*  Start the application(skipping of the tests is needed because the test environment builds up a Kafka Server)
 
 ```
-mvn spring-boot:run
+mvn spring-boot:run -DskipTests
 ```
 
-* Test the application
+* Test the application with a console-consumer
 
 ```
 docker exec -it nutaxi-kafka /bin/bash
