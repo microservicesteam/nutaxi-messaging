@@ -12,14 +12,14 @@ public class EmbeddedKafkaServer {
     private EmbeddedZooKeeperServer zookeeper;
 
     public EmbeddedKafkaServer(Properties kafkaProperties, Properties zkProperties) {
-        KafkaConfig kafkaConfig = new KafkaConfig(kafkaProperties);
         zookeeper = new EmbeddedZooKeeperServer(zkProperties);
-        kafka = new KafkaServerStartable(kafkaConfig);
+        kafka = new KafkaServerStartable(new KafkaConfig(kafkaProperties));
         kafka.startup();
     }
 
     public void stop() {
         kafka.shutdown();
+        zookeeper.stop();
     }
 
 }
