@@ -7,8 +7,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -29,9 +27,8 @@ public class NutaxiMessagingApplicationTests {
     private static EmbeddedKafkaServer kafkaServer;
 
     @BeforeClass
-    public static void startKafka() {
+    public static void init() {
         cleanup();
-
         kafkaServer = new EmbeddedKafkaServer(loadKafkaProperties(), loadZooKeeperProperties());
     }
 
@@ -41,14 +38,8 @@ public class NutaxiMessagingApplicationTests {
     }
 
     @AfterClass
-    public static void stopKafka() {
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                kafkaServer.stop();
-                cleanup();
-            }
-        }, 5000);
+    public static void tearDown() {
+        kafkaServer.stop();
     }
 
     private static Properties loadZooKeeperProperties() {
