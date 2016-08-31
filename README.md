@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/microservicesteam/nutaxi-messaging.svg?branch=master)](https://travis-ci.org/microservicesteam/nutaxi-messaging)
 
 # nutaxi-messaging
 
