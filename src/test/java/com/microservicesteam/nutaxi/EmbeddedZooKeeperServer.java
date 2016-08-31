@@ -40,7 +40,7 @@ public class EmbeddedZooKeeperServer {
         try {
             quorumConfiguration.parseProperties(zkProperties);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw propagate(e);
         }
         return quorumConfiguration;
     }

@@ -8,13 +8,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -22,7 +23,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class NutaxiMessagingApplicationTests {
 
     @Autowired
-    private ApplicationContext applicationContext;
+    private ConfigurableApplicationContext applicationContext;
 
     private static EmbeddedKafkaServer kafkaServer;
 
@@ -35,6 +36,11 @@ public class NutaxiMessagingApplicationTests {
     @Test
     public void contextLoads() {
         assertThat(applicationContext).isNotNull();
+    }
+
+    @After
+    public void stopApplicationContext() {
+        applicationContext.stop();
     }
 
     @AfterClass
